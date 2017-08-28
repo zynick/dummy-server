@@ -3,7 +3,9 @@
 const express = require('express');
 const router = express.Router();
 
-router.use((req, res) => {
+
+
+router.use((req, res, next) => {
     // Logging
     console.log('\n');
     // console.log(`KEYS: ${Object.keys(req)}`);
@@ -17,9 +19,13 @@ router.use((req, res) => {
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.setHeader('Access-Control-Allow-Origin', '*');
 
-    res.render('index', {
-        title: 'Index Page'
-    });
+    next();
 });
+
+// Simulate Internal Server Error
+router.use('/server-error', (req, res, next) => next({ status: 500, message: 'Internal Server Error'}));
+
+// Default Response
+router.use((req, res) => res.render('index', { title: 'Index Page' }));
 
 module.exports = router;
