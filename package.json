@@ -1,6 +1,8 @@
 {
   "name": "dummy-server",
   "version": "0.0.1",
+  "license": "MIT",
+  "repository": "github:zynick/dummy-server",
   "scripts": {
     "error": "DEBUG=app:error node ./bin/www",
     "start": "DEBUG=app:* node ./bin/www"
